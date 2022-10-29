@@ -1,0 +1,16 @@
+* {
+    // color0
+    background:                     #090a11;
+    // color0
+    background-alt:                 #090a11;
+    // color7 or color15
+    foreground:                     #b3b4c3;
+    // color0
+    border:                                     #090a11;
+    // color0
+    border-alt:                         #090a11;
+    // color10
+    selected:                           #4F3549;
+    // color9
+    urgent:                         #2E3346;
+}

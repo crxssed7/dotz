@@ -1,0 +1,209 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[ini]
+include-file = ~/.config/polybar/colors
+
+[colors]
+background = ${ini.color0}
+background-alt = ${ini.color2}
+foreground = ${ini.color7}
+foreground-alt = ${ini.color2}
+underline = ${ini.color15}
+alert = #AB1822
+connected = #559E55
+;icons = ${ini.color5}
+icons = ${colors.foreground}
+
+[bar/main]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 30
+;offset-x = 1%
+;offset-y = 1%
+radius = 0
+fixed-center = true
+
+;tray-position = right
+;tray-padding = 2
+;tray-background = ${colors.background}
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 10
+border-bottom-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=11;3
+font-1 = JetBrainsMono Nerd Font:size=14;4
+font-2 = feather:size=12;3
+
+modules-left = bspwm
+modules-center = xwindow
+modules-right = pulseaudio wlan date symbol
+
+;separator = "|"
+;separator-foreground= ${colors.foreground-alt}
+
+wm-restack = bspwm
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+label-maxlen = 50
+label-empty = THE KING OF MOUNTAINS
+format-background = ${colors.background-alt}
+format-foreground = ${colors.foreground}
+format-padding = 1
+
+[module/bspwm]
+type = internal/bspwm
+
+format-background = ${colors.background}
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.underline}
+label-focused-padding = 1
+
+;label-active = 
+;label-active-padding = 2
+;label-occupied = 
+;label-occupied-padding = 2
+;label-empty = 
+;label-empty-padding = 2
+
+label-active = 
+label-active-padding = 2
+label-occupied = 
+label-occupied-padding = 2
+label-empty = 
+label-empty-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.icons}
+format-underline = ${colors.underline}
+label = "%percentage:2%%"
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "♥ "
+format-prefix-foreground = ${colors.icons}
+format-underline = ${colors.underline}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-prefix = " "
+label-connected = Connected
+format-connected-prefix-foreground = ${colors.icons}
+format-connected-background = ${colors.connected}
+format-connected-padding = 1
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = " "
+label-disconnected = Disconnected
+label-disconnected-foreground = ${colors.foreground}
+format-disconnected-background = ${colors.alert}
+format-disconnected-padding = 1
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%d-%m-%Y"
+
+time = %H:%M:%S
+time-alt = "%d/%m/%Y"
+
+format-prefix = " "
+format-prefix-foreground = ${colors.icons}
+
+label = %time%
+label-foreground = ${colors.foreground}
+format-background = ${colors.background-alt}
+format-padding = 1
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-prefix = " "
+format-volume-prefix-foreground = ${colors.icons}
+format-volume = <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
+format-volume-background = ${colors.background-alt}
+format-volume-padding = 1
+
+label-muted =   0%
+label-muted-foreground = ${colors.foreground}
+format-muted-background = ${colors.alert}
+format-muted-padding = 1
+
+click-right = exec pavucontrol
+
+[module/symbol]
+type = custom/text
+content =  
+content-foreground = ${colors.icons}
+content-background = ${colors.background}
+content-padding = 1
+click-left = rofi -show drun -show-icons -font "JetBrainsMono Nerd Font 12"
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
