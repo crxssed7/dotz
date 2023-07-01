@@ -1,0 +1,7 @@
+alias todo="cd ${HOME}/todoman && ./todoman todo.md"
+alias mc="cd ${HOME}/.minecraft && gamemoderun ./launcher/minecraft-launcher"
+alias epl="soccer --standings --league=PL"
+alias mufc="soccer --team=MUFC"
+alias football="soccer --time 5 --upcoming"
+
+alias cls="clear"
